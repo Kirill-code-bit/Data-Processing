@@ -1,0 +1,711 @@
+FileInputStream(String fileName) throws FileNotFoundException
+FileOutputStream(String filePath)
+FileOutputStream(File fileObj)
+FileOutputStream(String filePath, boolean append)
+FileOutputStream(File fileObj, boolean append)
+import java.io.*;
+ 
+public class Program {
+  
+    public static void main(String[] args) {
+          
+        String text = "Hello world!"; // строка для записи
+        try(FileOutputStream fos=new FileOutputStream("notes.txt"))
+        {
+            // перевод строки в байты
+            byte[] buffer = text.getBytes();
+              
+            fos.write(buffer, 0, buffer.length);
+            System.out.println("The file has been written");
+        }
+        catch(IOException ex){
+              
+            System.out.println(ex.getMessage());
+        }
+    }
+}
+fos.write(buffer[0]); // запись первого байта
+import java.io.*;
+ 
+public class Program {
+  
+    public static void main(String[] args) {
+ 
+        try(FileInputStream fin=new FileInputStream("notes.txt"))
+        {    
+            int i;
+            while((i=fin.read())!=-1){
+              
+                System.out.print((char)i);
+            }   
+        }
+        catch(IOException ex){
+              
+            System.out.println(ex.getMessage());
+        } 
+    }
+}
+while((i=fin.read())!=-1){
+import java.io.*;
+  
+public class Program {
+   
+    public static void main(String[] args) {
+  
+        try(FileInputStream fin=new FileInputStream("notes.txt"))
+        {
+            byte[] buffer = new byte[256];
+            System.out.println("File data:");
+             
+            int count;
+            while((count=fin.read(buffer))!=-1){
+               
+                for(int i=0; i<count;i++){
+             
+                    System.out.print((char)buffer[i]);
+                }
+            }   
+        }
+        catch(IOException ex){
+               
+            System.out.println(ex.getMessage());
+        } 
+    }
+}
+while((count=fin.read(buffer))!=-1){
+for(int i=0; i<count;i++){
+             
+    System.out.print((char)buffer[i]);
+}
+import java.io.*;
+  
+public class Program {
+  
+    public static void main(String[] args) {
+          
+        try(FileInputStream fin=new FileInputStream("notes.txt");
+                FileOutputStream fos=new FileOutputStream("notes_new.txt"))
+        {
+            byte[] buffer = new byte[256];
+             
+            int count;
+            // считываем буфер
+            while((count=fin.read(buffer))!=-1){
+               
+                // записываем из буфера в файл
+                fos.write(buffer, 0, count);
+            }
+            System.out.println("File has been written");
+        }
+        catch(IOException ex){
+              
+            System.out.println(ex.getMessage());
+        } 
+    } 
+}
+File file = new File("/home/user/pic.jpg");
+InputStream fIn = new FileInputStream(file);
+FileInputStream fIn = new FileInputStream(file);
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+ 
+public class InputOutputStream {
+    public static void main(String[] args) 
+              throws IOException {
+ 
+        FileInputStream fileIn = 
+              new FileInputStream(
+                  "src/file/pets.png");
+        FileOutputStream fileOut = 
+              new FileOutputStream(
+                  "src/file/pets2.png");
+ 
+        while (fileIn.available() > 0) {
+            int oneByte = fileIn.read();
+            fileOut.write(oneByte);
+        }
+        fileIn.close();
+        fileOut.close();
+    }
+}
+byte[] blockBytes = new byte[100];
+ 
+while (fileIn.available() > 0) {
+    int qtyBytes = fileIn.read(blockBytes);
+    fileOut.write(blockBytes, 0, qtyBytes);
+}
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+ 
+public class PrintStreamTest {
+    public static void main(String[] args) 
+           throws FileNotFoundException {
+ 
+        PrintStream fileOut = new PrintStream(
+             "src/file/text.txt");
+        fileOut.println(10.5);
+        fileOut.printf(
+              "%s - %d - %f", "hi", 10, 1.1);
+        fileOut.close();
+    }
+}
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+ 
+public class BufferStream {
+    public static void main(String[] args) 
+                      throws IOException {
+ 
+        FileInputStream fileIn = 
+          new FileInputStream("src/file/text.txt");
+        BufferedInputStream bufIn = 
+          new BufferedInputStream(fileIn, 100);
+ 
+        int i;
+        while((i = bufIn.read())!= -1){
+            System.out.print((char)i);
+        }
+    }
+}
+FileReader reader = new FileReader(
+              "src/file/text.txt");
+FileWriter writer = new FileWriter(
+              "src/file/text2.txt");
+ 
+while (reader.ready()) {
+    int c = reader.read();
+    writer.write(c);
+}
+ 
+reader.close();
+writer.close();
+FileReader reader = new FileReader(
+              "src/file/text.txt");
+FileWriter writer = new FileWriter(
+              "src/file/text3.txt");
+ 
+char[] buff = new char[10];
+ 
+while (reader.ready()) {
+    int qtySymbols = reader.read(buff);
+    writer.write(buff, 0, qtySymbols);
+}
+ 
+writer.write("Halo");
+ 
+reader.close();
+writer.close();
+import java.io.*;
+ 
+public class BufferedReaderTest {
+    public static void main(String[] args) 
+                      throws IOException {
+ 
+        Reader reader = new FileReader(
+                  "src/file/text.txt");
+        BufferedReader buffReader = 
+                  new BufferedReader(reader);
+ 
+        while (buffReader.ready()) {
+            System.out.println(
+                  buffReader.readLine());
+        }
+ 
+        reader.close();
+        buffReader.close();
+    }
+}
+class Person{
+ 
+}
+class Person{
+     
+    String name;        // имя
+    int age;            // возраст
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+public class Program{
+      
+    public static void main(String[] args) {
+         
+        Person tom;
+    }
+}
+class Person{
+     
+    String name;    // имя
+    int age;        // возраст
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+public class Program{
+      
+    public static void main(String[] args) {
+         
+        Person tom = new Person(); // создание объекта
+        tom.displayInfo();
+         
+        // изменяем имя и возраст
+        tom.name = "Tom";
+        tom.age = 34;
+        tom.displayInfo();
+    }
+}
+class Person{
+     
+    String name;    // имя
+    int age;        // возраст
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+public class Program{
+      
+    public static void main(String[] args) {
+         
+        Person bob = new Person();      // вызов первого конструктора без параметров
+        bob.displayInfo();
+         
+        Person tom = new Person("Tom"); // вызов второго конструктора с одним параметром
+        tom.displayInfo();
+         
+        Person sam = new Person("Sam", 25); // вызов третьего конструктора с двумя параметрами
+        sam.displayInfo();
+    }
+}
+class Person{
+     
+    String name;    // имя
+    int age;        // возраст
+    Person()
+    {
+        name = "Undefined";
+        age = 18;
+    }
+    Person(String n)
+    {
+        name = n;
+        age = 18;
+    }
+    Person(String n, int a)
+    {
+        name = n;
+        age = a;
+    }
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+public class Program{
+      
+    public static void main(String[] args) {
+         
+        Person undef = new Person();
+        undef.displayInfo();
+         
+        Person tom = new Person("Tom");
+        tom.displayInfo();
+         
+        Person sam = new Person("Sam", 25);
+        sam.displayInfo();
+    }
+}
+class Person{
+     
+    String name;    // имя
+    int age;        // возраст
+    Person()
+    {
+        this("Undefined", 18);
+    }
+    Person(String name)
+    {
+        this(name, 18);
+    }
+    Person(String name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+this.name = name;
+Person(String name)
+{
+    this(name, 18);
+}
+public class Program{
+      
+    public static void main(String[] args) {
+         
+        Person undef = new Person();
+        undef.displayInfo();
+         
+        Person tom = new Person("Tom");
+        tom.displayInfo();
+    }
+}
+class Person{
+     
+    String name;    // имя
+    int age;        // возраст
+     
+    /*начало блока инициализатора*/
+    {
+        name = "Undefined";
+        age = 18;
+    }
+    /*конец блока инициализатора*/
+    Person(){
+         
+    }
+    Person(String name){
+         
+        this.name = name;
+    }
+    Person(String name, int age){
+         
+        this.name = name;
+        this.age = age;
+    }
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+public abstract class AbstractPhone {
+    private int year;
+
+    public AbstractPhone(int year) {
+        this.year = year;
+    }
+    public abstract void call(int outputNumber);
+    public abstract void ring (int inputNumber);
+}
+public class SomePhone {
+
+    private int year;
+    private String company;
+    public SomePhone(int year, String company) {
+        this.year = year;
+        this.company = company;
+    }
+private void openConnection(){
+    
+    
+}
+public void call() {
+    openConnection();
+    System.out.println("Вызываю номер");
+}
+
+public void ring() {
+    System.out.println("Дзынь-дзынь");
+}
+
+ }
+public abstract class WirelessPhone extends AbstractPhone {
+
+    private int hour;
+
+    public WirelessPhone(int year, int hour) {
+        super(year);
+        this.hour = hour;
+    }
+    }
+public abstract class WirelessPhone extends AbstractPhone {
+
+    private int hour;
+
+    public WirelessPhone(int year, int hour) {
+        super(year);
+        this.hour = hour;
+    }
+    }
+public class User {
+    private String name;
+
+    public User(String name) {
+        this.name = name;
+            }
+
+    public void callAnotherUser(int number, AbstractPhone phone){
+
+        phone.call(number);
+    }
+}
+ }
+public class Program {
+ 
+    public static void main(String[] args) {
+ 
+        Student bob = new Student(); // выделили память под объект
+        bob.name = "Bob"; // Дали имя
+        bob.age = 19; // Определили возраст
+        bob.printInfo(); // Вывели информацию в консоль
+    }
+}
+ 
+class Student {
+ 
+    String name;    // поле №1: имя студента
+    int age;        // поле №2: возраст студента
+ 
+    void printInfo() { // метод класса Student
+        System.out.printf("Name: %s \nAge: %d\n", name, age);
+    }
+}
+public class Program {
+ 
+    public static void main(String[] args) {
+ 
+        Student bob = new Student(); // выделили память под объект
+        bob.name = "Bob"; // Дали имя
+        bob.age = 19;     // Определили возраст
+        bob.printInfo(); // Вывели информацию в консоль
+        Student bill;   // определена переменная типа Student 
+                        // без выделения памяти, 
+                        // т.е. без вызова конструктора
+    }
+}
+ 
+class Student {
+ 
+    String name;    // поле №1: имя студента
+    int age;        // поле №2: возраст студента
+ 
+    Student() { // пустой конструктор без параметров
+        System.out.println("Call of constructor!");
+    }
+ 
+    void printInfo() { // метод класса Student
+        System.out.printf("Name: %s \nAge: %d\n", name, age);
+    }
+}
+public class Program {
+ 
+    public static void main(String[] args) {
+ 
+        Student bob = new Student(); // выделили память под объект
+        bob.name = "Bob"; // Дали имя
+        bob.age = 19;     // Определили возраст
+        bob.printInfo(); // Вывели информацию в консоль
+        Student bill = new Student();   // выделили память под второй объект
+    }
+}
+ 
+class Student {
+ 
+    String name;    // поле №1: имя студента
+    int age;        // поле №2: возраст студента
+ 
+    Student() { // пустой конструктор без параметров
+        System.out.println("Call of constructor!");
+    }
+ 
+    void printInfo() { // метод класса Student
+        System.out.printf("Name: %s \nAge: %d\n", name, age);
+    }
+}
+public class Program {
+ 
+    public static void main(String[] args) {
+ 
+        Student bob = new Student(); // вызов конструктора без параметров
+        bob.name = "Bob"; // Дали имя
+        bob.age = 19;     // Определили возраст
+        bob.printInfo(); // Вывели информацию о bob в консоль
+        Student bill = new Student("Bill", 22);   // вызов конструктора с параметрами
+        bill.printInfo(); // Вывели информацию о bill в консоль
+        Student noname = new Student(); // полям присовятся значения
+                                        // заданные в инициализаторе
+        noname.printInfo();
+    }
+}
+ 
+class Student {
+ 
+    String name;    // поле №1: имя студента
+    int age;        // поле №2: возраст студента
+    
+    // присваиваем полям стартовые значения
+    // еще до вызова конструктора или инициализации
+    { // инициализатор (есть тело, но нет имени)
+        name = "Noname";
+        age = 0;
+    }
+ 
+    Student() { // пустой конструктор без параметров
+        System.out.println("Call of constructor without parameters!");
+    }
+ 
+    Student(String newName, int newAge) { // конструктор с двумя параметрами
+        name = newName; // присвоение полям класса значений
+        age = newAge; // прямо при создании нового объекта
+        System.out.println("Call of constructor with parameters!");
+    }
+ 
+    void printInfo() { // метод класса Student
+        System.out.printf("Name: %s \nAge: %d\n", name, age);
+    }
+}
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+Stream<String> nameStream = names.stream();
+String[] nameArray = {"Alice", "Bob", "Charlie"};
+Stream<String> nameStream = Arrays.stream(nameArray);
+Stream<String> lines = Files.lines(Paths.get("file.txt"));
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+List<String> filteredNames = names.stream()
+    .filter(name -> name.startsWith("A"))
+    .collect(Collectors.toList());
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+List<Integer> nameLengths = names.stream()
+    .map(String::length)
+    .collect(Collectors.toList());
+List<String> names = Arrays.asList("Charlie", "Alice", "Bob");
+List<String> sortedNames = names.stream()
+    .sorted()
+    .collect(Collectors.toList());
+class User {
+    String name;
+    int age;
+
+    User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    int getAge() {
+        return age;
+    }
+}
+
+List<User> users = Arrays.asList(
+    new User("Alice", 23),
+    new User("Bob", 17),
+    new User("Charlie", 19)
+);
+
+List<String> adultNames = users.stream()
+    .filter(user -> user.getAge() > 18)
+    .map(User::getName)
+    .collect(Collectors.toList());
+class Transaction {
+    String type;
+    int amount;
+
+    Transaction(String type, int amount) {
+        this.type = type;
+        this.amount = amount;
+    }
+
+    String getType() {
+        return type;
+    }
+
+    int getAmount() {
+        return amount;
+    }
+}
+
+List<Transaction> transactions = Arrays.asList(
+    new Transaction("Food", 100),
+    new Transaction("Electronics", 200),
+    new Transaction("Food", 50)
+);
+
+Map<String, Integer> totalByType = transactions.stream()
+    .collect(Collectors.groupingBy(Transaction::getType, Collectors.summingInt(Transaction::getAmount)));
+import java.io.File;
+import java.io.IOException;
+ 
+public class Main {
+    public static void main(String[] args) {
+        try {
+            File file = new File("example.txt");
+            if (file.createNewFile()) {
+                System.out.println("Файл создан");
+            } else {
+                System.out.println("Файл уже существует");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка при создании файла");
+            e.printStackTrace();
+        }
+    }
+}
+import java.io.FileWriter;
+import java.io.IOException;
+ 
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("example.txt");
+            writer.write("Привет, мир!");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Ошибка при записи в файл");
+            e.printStackTrace();
+        }
+    }
+}
+Простым примером выбрасывания исключения является рассмотрение ссылки на объект, называемой t. Возможно, что вы можете передать ссылку, которая не была инициализирована, так что вы можете пожелать проверить ее перед вызовом метода, использующего эту ссылку на объект. Вы можете послать информацию об ошибке в больший контекст с помощью создания объекта, представляющего вашу информацию и “выбросить” его из вашего контекста. Это называется выбрасыванием исключения. Это выглядит так:
+
+if(t == null)
+  throw new NullPointerException();
+Как и многие объекты в Java, вы всегда создаете исключения в куче, используя new, который резервирует хранилище и вызывает конструктор. Есть два конструктора для всех стандартных исключений: первый - конструктор по умолчанию, и второй принимает строковый аргумент, так что вы можете поместить подходящую информацию в исключение:
+
+if(t == null)
+  throw new NullPointerException("t = null");
+Блок try
+Если вы находитесь внутри метода, и вы выбросили исключение (или другой метод, вызванный вами внутри этого метода, выбросил исключение), такой метод перейдет в процесс бросания. Если вы не хотите быть выброшенными из метода, вы можете установить специальный блок внутри такого метода для поимки исключения. Он называется блок проверки, потому что вы “проверяете” ваши различные методы, вызываемые здесь. Блок проверки - это обычный блок, которому предшествует ключевое слово try:
+
+try {
+  // Код, который может сгенерировать исключение
+}
+Обработчики исключений
+Конечно, выбрасывание исключения должно где-то заканчиваться. Это “место” - обработчик исключения, и есть один обработчик для каждого типа исключения, которые вы хотите поймать. Обработчики исключений следуют сразу за блоком проверки и объявляются ключевым словом catch:
+
+try {
+  // Код, который может сгенерировать исключение
+} catch(Type1 id1) {
+  // Обработка исключения Type1
+} catch(Type2 id2) {
+  // Обработка исключения Type2
+} catch(Type3 id3) {
+  // Обработка исключения Type3
+}
+
+// и так далее...
+Наиболее простой способ создать новый тип исключения - это просто создать конструктор по умолчанию для вас, так чтобы он совсем не требовал кода:
+
+//: c10:SimpleExceptionDemo.java
+// Наследование вашего собственного исключения.
+class SimpleException extends Exception {} 
+
+public class SimpleExceptionDemo {
+  public void f() throws SimpleException {
+    System.out.println(
+      "Throwing SimpleException from f()");
+    throw new SimpleException ();
+  }
+  public static void main(String[] args) {
+    SimpleExceptionDemo sed = 
+      new SimpleExceptionDemo();
+    try {
+      sed.f();
+    } catch(SimpleException e) {
+      System.err.println("Caught it!");
+    }
+  }
+} ///:~
